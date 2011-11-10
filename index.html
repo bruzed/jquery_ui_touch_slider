@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		<title>jQuery.ui.touch</title>
+		<!--[if IE]><script>/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script><![endif]-->
+		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet">
+		<script src="js/jquery-1.6.2.min.js"></script>
+		<script src="js/jquery-ui-1.8.16.custom.min.js"></script>
+		<!--script src="js/jquery.ui.touch-punch.min.js"></script-->
+		<script src="js/jquery.ui.ipad.altfix.js"></script>    
+	</head>
+	
+	<body>
+		
+		<div id="container" style="width: 800px; margin: auto;">
+			
+			<br/><br/>
+			
+			<section class="example">
+				<div id="slider"></div>
+			</section>
+      		
+      		<br/><br/>
+      		
+      		<section class="example">
+				<div id="slider2"></div>
+			</section>
+      
+			<p>
+				<label for="amount">Price range:</label>
+				<input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;" />
+			</p>
+			
+			<div id="slider-range"></div>
+			
+			<p>
+				<label for="amount2">Price range:</label>
+				<input type="text" id="amount2" style="border:0; color:#f6931f; font-weight:bold;" />
+			</p>
+			
+			<div id="slider-range2"></div>
+
+		</div>
+
+		<script>
+			$("#slider").slider().addTouch();
+			
+			$("#slider2").slider().addTouch();
+          	
+          	$( "#slider-range" ).slider({
+				range: true,
+				min: 0,
+				max: 500,
+				values: [ 75, 300 ],
+				slide: function( event, ui ) {
+					$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				}
+			}).addTouch();
+			
+			$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+			
+			$( "#slider-range2" ).slider({
+				range: true,
+				min: 0,
+				max: 100,
+				values: [ 20, 50 ],
+				slide: function( event, ui ) {
+					$( "#amount2" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+				}
+			}).addTouch();
+			
+			$( "#amount2" ).val( "$" + $( "#slider-range2" ).slider( "values", 0 ) + " - $" + $( "#slider-range2" ).slider( "values", 1 ) );
+		
+		</script>
+	
+	</body>
+</html>
